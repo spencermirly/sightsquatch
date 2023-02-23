@@ -1,0 +1,187 @@
+
+body {
+    font-family: sans;
+    background-color: #193c3e;
+    color: #ead4aa;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #ead4aa;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.expand {
+    flex-grow: 1;
+}
+
+#title-bar {
+    height: 80px;
+    background-color: #3e8948;
+}
+
+#title-bar img{
+    margin: 5px;
+}
+
+#title-bar h1{
+    display: inline;
+    padding-left: 5px;
+}
+
+#nav-bar{
+    margin: 0px;
+    padding: 0px;
+    background-color: #264c42;
+    box-shadow: 0px 4px 3px #000000AA;
+    position: sticky;
+    top: 0;
+}
+
+#nav-bar a{
+    border: none;
+    color: #ead4aa;
+    font-size: 18px;
+    padding: 15px;
+    background-color: #264c42;
+    transition: all 0.2s;
+}
+
+#nav-bar a:hover{
+    background-color: #3e8948;
+}
+
+#main-img {
+    object-fit: cover;
+    width: 100%;
+    min-height: 40%;
+    max-height: 40%;
+    position: relative;
+    z-index: -1;
+}
+
+#content {
+    margin: 10px;
+}
+
+#news {
+    background-color: #262b44;
+    border-radius: 18px;
+    margin: 10px;
+    padding: 5px;
+    height: 600px;
+    max-width: 35%;
+    min-width: 300px;
+    box-shadow: 3px 3px 3px #000000AA;
+}
+
+#news h2 {
+    border-bottom: 3px solid #ead4aa;
+}
+
+#news li{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#recent h2 {
+    border-bottom: 3px solid #ead4aa;
+}
+
+.post{
+    background-color: #262b44;
+    border-radius: 6px;
+    margin: 10px;
+    padding: 8px;
+}
+
+.post .comment-count{
+    justify-content: center;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+@keyframes post-anim {
+    from {
+        box-shadow: none;
+        right: 0px;
+        bottom: 0px;
+    }
+    to{
+        box-shadow: 3px 3px 3px #000000AA;
+        right: 3px;
+        bottom: 3px;
+    }
+}
+
+.post:hover{
+    position: relative;
+    animation-name: post-anim;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+.post h3{
+    margin: 3px;
+}
+
+.post .metadata span{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#login-signup {
+    background-image: url("Forest.jpeg");
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+#credentials, #create-post{
+    text-align: center;
+    gap: 10px;
+    background-color: #262b44;
+    border-radius: 18px;
+    margin: 15px;
+    padding: 15px;
+    width: 40%;
+    box-shadow: 3px 3px 3px #000000AA;
+}
+
+#filters{
+    text-align: center;
+    gap: 10px;
+    background-color: #262b44;
+    border-radius: 18px;
+    margin: 15px;
+    padding: 15px;
+    width: 20%;
+    box-shadow: 3px 3px 3px #000000AA;
+}
+
+input {
+    font-size: 16px;
+}
+
+#footer-bar {
+    text-align: center;
+    background-color: #262b44;
+    padding: 5px;
+    border-top: 1px solid black;
+}
