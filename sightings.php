@@ -1,6 +1,7 @@
 <html>
     <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="squatchicon.png">
     <title>Sightsquatch</title>
     </head>
     <body>
@@ -12,7 +13,6 @@
             <a href="index.php">Home</a>
             <a href="sightings.php">Sightings</a>
             <a href="faq.php">FAQ</a>
-            <a href="about.php">About</a>
             <span class="expand"></span>
             <a href="login.php">Login</a>
             <a href="signup.php">Signup</a>
