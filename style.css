@@ -151,6 +151,7 @@ a {
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    object-fit: cover;
 }
 
 #credentials, #create-post{
@@ -176,7 +177,7 @@ a {
 }
 
 #faq{
-    text-align: center;
+    text-align: left;
     background-color: #262b44;
     border-radius: 18px;
     margin: 15px;
