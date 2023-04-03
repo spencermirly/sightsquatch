@@ -18,7 +18,7 @@
             <a href="signup.php">Signup</a>
         </div>
         <div id="login-signup" class="flex-row">
-            <form id="credentials" class="flex-col">
+            <form id="credentials" class="flex-col" method="POST" action="login_handler.php">
                 <h3>Login</h3>
                 <input type="email" name="email" placeholder="Email">
                 <input type="password" name="password" placeholder="Password">
