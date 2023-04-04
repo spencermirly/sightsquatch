@@ -5,11 +5,11 @@
     }
 ?>
     <div id="login-signup" class="flex-row">
-        <form id="create-post" class="flex-col" method="POST" action="newpost_handler.php">
+        <form id="create-post" class="flex-col" method="POST" action="newpost_handler.php" enctype="multipart/form-data">
             <h2>Post New Sighting</h2>
             <input type="text" name="title" placeholder="Title">
             <label for="pics">Images</label>
-            <input type="file" name="img" accept="image/*" multiple>
+            <input type="file" name="img[]" accept="image/*" multiple="multiple">
             <label for="date">Sighting Date</label>
             <input type="date" name="date">
             <input type="text" name="location" placeholder="Sighting Location">
