@@ -2,6 +2,7 @@
     session_start();
     require_once("user.php");
     $user = (isset($_SESSION['user']) ? unserialize($_SESSION['user']) : null);
+    unset($_SESSION['current_post']);
 ?>
 <html>
     <head>

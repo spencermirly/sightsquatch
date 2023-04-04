@@ -18,14 +18,14 @@
             }
         }
 
-        public static function postEntry($title, $poster, $location, $date, $comments) {
+        public static function postEntry($id, $title, $poster, $location, $date, $comments) {
             $title = htmlspecialchars($title);
             $poster = htmlspecialchars($poster);
             $location = htmlspecialchars($location);
             $date = htmlspecialchars($date);
             $comments = htmlspecialchars($comments);
             return "
-                <div class='post flex-row'>
+                <a class='post flex-row' href='post.php?post_id=$id'>
                     <div class='info expand'>
                     <h3>$title</h3>
                         <div class='metadata flex-row'>
@@ -39,32 +39,12 @@
                         <img src=chat-left-text-fill.svg>
                         <span><strong>$comments</strong></span>
                     </div>
-                </div>
+                </a>
             ";
         }
 
         public static function postEntryArr($array) {
-            return Widgets::postEntry($array['title'], $array['username'], $array['sightingLoc'], $array['sightingDate'], $array['comments']);
+            return Widgets::postEntry($array['id'], $array['title'], $array['username'], $array['sightingLoc'], $array['sightingDate'], $array['comments']);
         }
     }
-
-    /*
-    <div class="post flex-row">
-                <div class="info expand">
-                <h3>Example Post</h3>
-                    <div class="metadata flex-row">
-                        <span class="name">Example User</span>
-                        <span class="expand"></span>
-                        <span class="loc">Boise, ID</span>
-                        <span class="date">1/27/2023</span>
-                    </div>
-                </div>
-                <div class="comment-count flex-col">
-                    <img src=chat-left-text-fill.svg>
-                    <span><strong>12</strong></span>
-                </div>
-            </div>
-
-    */
-
 ?>

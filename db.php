@@ -98,5 +98,29 @@
             $stmt->bindParam(":posterID", $posterID);
             return $stmt->execute();
         }
+
+        public function fetchComments($postID) {
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                SELECT c.*, u.username FROM Comments c
+                JOIN Users u ON c.posterID = u.id
+                WHERE postID = :postID
+                ORDER BY commentDate DESC
+            ");
+            $stmt->bindParam(":postID", $postID);
+            return ($stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array());
+        }
+
+        public function createComment($postID, $posterID, $body) {
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                INSERT INTO Comments (body, postID, posterID)
+                VALUES (:body, :postID, :posterID)
+            ");
+            $stmt->bindParam(":body", $body);
+            $stmt->bindParam(":postID", $postID);
+            $stmt->bindParam(":posterID", $posterID);
+            return $stmt->execute();
+        }
     }
 ?>
