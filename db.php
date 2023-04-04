@@ -53,19 +53,17 @@
             return CreateUserResult::EmailTaken;
         }
 
-        public function fetchPosts($num, $skip = 0, $orderBy = "postDate", $desc = true) {
-            $dir = ($desc ? "DESC" : "ASC");
+        public function fetchPosts($num, $skip = 0, $orderBy = "postDate") {
             $conn = $this->connection();
             $stmt = $conn->prepare("
                 SELECT p.*, u.username, COUNT(c.id) AS comments FROM Posts p
                 JOIN Users u ON p.posterID = u.id
                 LEFT JOIN Comments c ON c.postID = p.id
                 GROUP BY p.id
-                ORDER BY :orderBy :dir
+                ORDER BY :orderBy
                 LIMIT :num OFFSET :skip
             ");
             $stmt->bindParam(":orderBy", $orderBy);
-            $stmt->bindParam(":dir", $dir);
             $stmt->bindParam(":num", $num, PDO::PARAM_INT);
             $stmt->bindParam(":skip", $skip, PDO::PARAM_INT);
             return ($stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array());
@@ -96,7 +94,7 @@
             $stmt->bindParam(":date", $date);
             $stmt->bindParam(":location", $location);
             $stmt->bindParam(":posterID", $posterID);
-            return $stmt->execute();
+            return ($stmt->execute() ? $conn->lastInsertId() : -1);
         }
 
         public function fetchComments($postID) {
@@ -121,6 +119,27 @@
             $stmt->bindParam(":postID", $postID);
             $stmt->bindParam(":posterID", $posterID);
             return $stmt->execute();
+        }
+
+        public function addImageToPost($id, $path) {
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                INSERT INTO PostImages (postID, imgPath)
+                VALUES (:postID, :imgPath)
+            ");
+            $stmt->bindParam(":postID", $id);
+            $stmt->bindParam(":imgPath", $path);
+            return $stmt->execute();
+        }
+
+        public function fetchImages($id) {
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                SELECT imgPath FROM PostImages
+                WHERE postID = :postID
+            ");
+            $stmt->bindParam(":postID", $id);
+            return ($stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array());
         }
     }
 ?>

@@ -24,10 +24,14 @@
     <div id="content" class="flex-col expand">
         <div id="post-section">
             <?php
-                echo "
-                    <h2>$title</h2>
-                    <pre>$body</pre>
-                ";
+                echo "<h2>$title</h2>";
+
+                foreach($db->fetchImages($_GET['post_id']) as $img) {
+                    $path = $img['imgPath'];
+                    echo "<img src='$path'/>";
+                }
+
+                echo "<pre>$body</pre>";
             ?>
         </div>
         <?php

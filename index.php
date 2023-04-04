@@ -18,7 +18,7 @@
             <?php
                 $db = new DB();
                 $res = $db->fetchPosts(10);
-                foreach ($res as $post) {
+                foreach (array_reverse($res) as $post) {
                     echo Widgets::postEntryArr($post);
                 }
             ?>

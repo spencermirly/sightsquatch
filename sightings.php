@@ -21,6 +21,7 @@
                 }
                 $db = new DB();
                 $res = $db->fetchPosts(10);
+                $res = array_reverse($res);
                 foreach ($res as $post) {
                     echo Widgets::postEntryArr($post);
                 }
