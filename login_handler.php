@@ -15,7 +15,7 @@
     }
     else {
         $redirect = "index.php";
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = serialize($user);
         $_SESSION['notification'] = Widgets::notify("Logged in successfully", Notify::Success);
     }
 

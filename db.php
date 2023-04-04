@@ -53,7 +53,50 @@
             return CreateUserResult::EmailTaken;
         }
 
+        public function fetchPosts($num, $skip = 0, $orderBy = "postDate", $desc = true) {
+            $dir = ($desc ? "DESC" : "ASC");
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                SELECT p.*, u.username, COUNT(c.id) AS comments FROM Posts p
+                JOIN Users u ON p.posterID = u.id
+                LEFT JOIN Comments c ON c.postID = p.id
+                GROUP BY p.id
+                ORDER BY :orderBy :dir
+                LIMIT :num OFFSET :skip
+            ");
+            $stmt->bindParam(":orderBy", $orderBy);
+            $stmt->bindParam(":dir", $dir);
+            $stmt->bindParam(":num", $num, PDO::PARAM_INT);
+            $stmt->bindParam(":skip", $skip, PDO::PARAM_INT);
+            return ($stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array());
+        }
+
+        public function fetchPost($id) {
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                SELECT p.*, u.username, COUNT(c.id) AS comments FROM Posts p
+                JOIN Users u ON p.posterID = u.id
+                LEFT JOIN Comments c ON c.postID = p.id
+                WHERE p.id = :id
+                GROUP BY p.id
+
+            ");
+            $stmt->bindParam(":id", $id);
+            return ($stmt->execute() ? $stmt->fetch(PDO::FETCH_ASSOC) : null);
+        }
+
+        public function createPost($title, $body, $date, $location, $posterID) {
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                INSERT INTO Posts (title, body, sightingDate, sightingLoc, posterID)
+                VALUES (:title, :body, :date, :location, :posterID)
+            ");
+            $stmt->bindParam(":title", $title);
+            $stmt->bindParam(":body", $body);
+            $stmt->bindParam(":date", $date);
+            $stmt->bindParam(":location", $location);
+            $stmt->bindParam(":posterID", $posterID);
+            return $stmt->execute();
+        }
     }
-
-
 ?>
