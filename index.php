@@ -17,7 +17,7 @@
             <h2>Recent Sightings</h2>
             <?php
                 $db = new DB();
-                $res = $db->fetchPosts(10);
+                $res = $db->fetchPosts(100);
                 foreach (array_reverse($res) as $post) {
                     echo Widgets::postEntryArr($post);
                 }

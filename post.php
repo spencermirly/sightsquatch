@@ -25,24 +25,26 @@
         <div id="post-section">
             <?php
                 echo "<h2>$title</h2>";
-
-                foreach($db->fetchImages($_GET['post_id']) as $img) {
-                    $path = $img['imgPath'];
-                    echo "<img src='$path'/>";
+                $images = $db->fetchImages($_GET['post_id']);
+                if(!empty($images)){
+                    echo "<div id='img-section' class='flex-row'>";
+                    foreach($images as $img) {
+                        $path = $img['imgPath'];
+                        echo "<img src='$path'/>";
+                    }
+                    echo "</div>";
                 }
-
-                echo "<pre>$body</pre>";
+                echo "<p>$body</p>";
             ?>
         </div>
+        <br>
         <?php
             if($user != null){
                 echo "
-                    <div>
-                        <form id='new-comment' class='flex-row' method='POST' action='comment_handler.php'>
-                            <input type='text' name='comment' placeholder='Add a comment'>
-                            <input type='submit' value='post'>
-                        </form>
-                    </div>
+                    <form id='new-comment' class='flex-row' method='POST' action='comment_handler.php'>
+                        <input type='text' name='comment' placeholder='Add a comment'>
+                        <input type='submit' value='post'>
+                    </form>
                 ";
             }
         ?>

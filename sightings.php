@@ -20,7 +20,7 @@
                     echo "<a class='post flex-row' href='newpost.php'>Create New Post</a>";
                 }
                 $db = new DB();
-                $res = $db->fetchPosts(10);
+                $res = $db->fetchPosts(100);
                 $res = array_reverse($res);
                 foreach ($res as $post) {
                     echo Widgets::postEntryArr($post);

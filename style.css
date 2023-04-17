@@ -198,3 +198,7 @@ input {
     padding: 5px;
     border-top: 1px solid black;
 }
+
+#img-section {
+    height: 25%;
+}
