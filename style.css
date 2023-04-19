@@ -1,6 +1,11 @@
+@font-face {
+    font-family: noto;
+    src: url(fonts/NotoSans-Regular.ttf);
+}
+
 
 body {
-    font-family: sans;
+    font-family: noto;
     background-color: #193c3e;
     color: #ead4aa;
     margin: 0px;
@@ -189,6 +194,12 @@ a {
     box-shadow: 3px 3px 3px #000000AA;
 }
 
+#view-post {
+    text-align: left;
+    background-color: #193c3e;
+    border: 5px solid #262b44;
+}
+
 #filters{
     text-align: center;
     gap: 10px;
@@ -285,13 +296,13 @@ input {
 }
 
 .notify-success {
-    background-color: lightgreen;
-    border: 2px solid green;
+    background-color: #63c74d;
+    border: 2px solid #193c3e;
 }
 
 .notify-fail {
-    background-color: lightcoral;
-    border: 2px solid red;
+    background-color: #e43b44;
+    border: 2px solid #a22633;
 }
 
 #comment-section{
@@ -302,12 +313,13 @@ input {
     background-color: #262b44;
     border-radius: 8px;
     padding-left: 8px;
+    box-shadow: 3px 3px 3px #000000AA;
 }
 
 .delete-comment {
     width: 50px;
     padding: 0;
-    background-color: #ead4aa;
+    background-color: #8b9bb4;
     border: none;
     outline: none;
     border-radius: 0px 8px 8px 0px;
@@ -316,7 +328,7 @@ input {
 .delete-post {
     width: 50px;
     padding: 0;
-    background-color: #ead4aa;
+    background-color: #8b9bb4;
     border: none;
     outline: none;
     border-radius: 8px;

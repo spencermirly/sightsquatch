@@ -40,7 +40,8 @@
         }
     }
 
-    header("Location: index.php");
+    $_SESSION['notification'] = Widgets::notify("New post created", Notify::Success);
+    header("Location: post.php?post_id=$result");
     exit();
 
     //Array ( [img] => Array ( [name] => Array ( [0] => GraphStudent.png [1] => Graph.png ) [full_path] => Array ( [0] => GraphStudent.png [1] => Graph.png ) [type] => Array ( [0] => image/png [1] => image/png ) [tmp_name] => Array ( [0] => /opt/lampp/temp/phpzIMcvV [1] => /opt/lampp/temp/php6KXvum ) [error] => Array ( [0] => 0 [1] => 0 ) [size] => Array ( [0] => 56222 [1] => 38637 ) ) )
