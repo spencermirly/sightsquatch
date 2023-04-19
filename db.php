@@ -6,6 +6,7 @@
         case ServerError;
         case EmailTaken;
         case PasswordMismatch;
+        case InvalidEmail;
     }
 
     class DB {
@@ -34,6 +35,9 @@
         }
 
         public function createUser($username, $email, $password, $pwRetype, $isAdmin) {
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                return CreateUserResult::InvalidEmail;
+            }
             if($password !== $pwRetype){
                 return CreateUserResult::PasswordMismatch;
             }

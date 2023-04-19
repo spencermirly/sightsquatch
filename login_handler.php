@@ -12,6 +12,7 @@
     // Authenticate the user
     if ($user == null || !$user->authenticate($_POST['email'], $_POST['password'])){
         $_SESSION['notification'] = Widgets::notify("Incorrect credentials", Notify::Fail);
+        $_SESSION['form'] = $_POST;
     }
     else {
         $redirect = "index.php";

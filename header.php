@@ -4,6 +4,7 @@
     $user = (isset($_SESSION['user']) ? unserialize($_SESSION['user']) : null);
     unset($_SESSION['current_post']);
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
@@ -11,27 +12,33 @@
         <title>Sightsquatch</title>
         </head>
         <body>
-            <div id="title-bar" class="flex-row">
-                <img src="squatchicon.png">
-                <h1  class="expand">Sightsquatch</h1>
-                <?php
-                    if($user != null){
-                        echo "<p>Welcome, {$user->username}</p>";
-                    }
-                ?>
-            </div>
-            <div id="nav-bar" class="flex-row">
-                <a href="index.php">Home</a>
-                <a href="sightings.php">Sightings</a>
-                <a href="faq.php">FAQ</a>
-                <span class="expand"></span>
-                <?php
-                    if($user == null){
-                        echo "<a href='login.php'>Login</a>";
-                        echo "<a href='signup.php'>Signup</a>";
-                    }
-                    else {
-                        echo "<a href='logout_handler.php'>Logout</a>";
-                    }
-                ?>
-            </div>
+            <?php
+                if(isset($_SESSION['notification'])){
+                    echo $_SESSION['notification'];
+                }
+            ?>
+            <div id="container" class="flex-col">
+                <div id="title-bar" class="flex-row">
+                    <img src="squatchicon.png">
+                    <h1 class="expand">Sightsquatch</h1>
+                    <?php
+                        if($user != null){
+                            echo "<p>Welcome, {$user->username}</p>";
+                        }
+                    ?>
+                </div>
+                <div id="nav-bar" class="flex-row">
+                    <a href="index.php">Home</a>
+                    <a href="sightings.php">Sightings</a>
+                    <a href="faq.php">FAQ</a>
+                    <span class="expand"></span>
+                    <?php
+                        if($user == null){
+                            echo "<a href='login.php'>Login</a>";
+                            echo "<a href='signup.php'>Signup</a>";
+                        }
+                        else {
+                            echo "<a href='logout_handler.php'>Logout</a>";
+                        }
+                    ?>
+                </div>

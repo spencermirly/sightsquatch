@@ -24,7 +24,12 @@
     <div id="content" class="flex-col expand">
         <div id="post-section">
             <?php
-                echo "<h2>$title</h2>";
+                echo "
+                    <div id='title'section' class='flex-row'>
+                        <h2 class='expand'>$title</h2>
+                        <button style='width: 50px; padding: 0;'><img src=trash-can.svg></button>
+                    </div>
+                ";
                 $images = $db->fetchImages($_GET['post_id']);
                 if(!empty($images)){
                     echo "<div id='img-section' class='flex-row'>";

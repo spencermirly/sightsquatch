@@ -9,13 +9,22 @@
         exit();
     }
 
+    if(empty(trim($_POST['title'])) || empty(trim($_POST['body'])) || empty(trim($_POST['date'])) || empty(trim($_POST['location']))){
+        $_SESSION['notification'] = Widgets::notify("Inputs cannot be blank", Notify::Fail);
+        $_SESSION['form'] = $_POST;
+        header("Location: newpost.php");
+        exit();
+    }
+
     // Try to create the post in the database
     $db = new DB();
     $result = $db->createPost($_POST['title'], $_POST['body'], $_POST['date'], $_POST['location'], $user->id);
 
     // Exit if the post was not created
     if($result < 0) {
-        header("Location: index.php");
+        $_SESSION['notification'] = Widgets::notify("A server error occurred");
+        $_SESSION['form'] = $_POST;
+        header("Location: newpost.php");
         exit();
     }
 
