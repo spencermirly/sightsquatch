@@ -1,4 +1,5 @@
 <?php
+    $page = "index";
     require('header.php');
     require_once('widgets.php');
     require_once('db.php');

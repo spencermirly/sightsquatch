@@ -1,4 +1,7 @@
-<?php require('header.php'); ?>
+<?php
+    $page = "faq";
+    require('header.php');
+?>
     <div id="login-signup" class="flex-row">
         <form id="faq">
             <h3>Frequently Asked Questions</h3>
@@ -6,6 +9,7 @@
             <p>This site is designed for people to document their Sasquatch encounters and discuss them with others.
                 Anyone can post or comment here, however there are a few rules that must be followed:</p>
             <ol>
+                <li>All content must be appropriate for a general audience. This includes posts, comments, images, and usernames.</li>
                 <li>All posts and comments must be on-topic. All posts must be of a legitimate Bigfoot encounter and all comments must be relevant to that encounter.</li>
                 <li>All pictures attached to posts must be appropriate and relevant to the encounter.</li>
                 <li>Skeptics are allowed on the site, however this is not a debate site, it is meant for people to document their encounters and interactions should take place accordingly.</li>

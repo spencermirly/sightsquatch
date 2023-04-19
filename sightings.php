@@ -1,4 +1,5 @@
 <?php
+    $page = "sightings";
     require('header.php');
     require_once('db.php');
     require_once('widgets.php');

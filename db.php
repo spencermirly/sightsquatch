@@ -101,6 +101,31 @@
             return ($stmt->execute() ? $conn->lastInsertId() : -1);
         }
 
+        public function deletePost($postID) {
+            $conn = $this->connection();
+
+            $stmt = $conn->prepare("
+                DELETE FROM Comments
+                WHERE postID = :id
+            ");
+            $stmt->bindParam(":id", $postID);
+            if (!$stmt->execute()) { return false;}
+
+            $stmt = $conn->prepare("
+                DELETE FROM PostImages
+                WHERE postID = :id
+            ");
+            $stmt->bindParam(":id", $postID);
+            if (!$stmt->execute()) { return false;}
+
+            $stmt = $conn->prepare("
+                DELETE FROM Posts
+                WHERE id = :id
+            ");
+            $stmt->bindParam(":id", $postID);
+            return $stmt->execute();
+        }
+
         public function fetchComments($postID) {
             $conn = $this->connection();
             $stmt = $conn->prepare("
@@ -113,6 +138,16 @@
             return ($stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array());
         }
 
+        public function fetchComment($commentID) {
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                SELECT *FROM Comments
+                WHERE id = :id
+            ");
+            $stmt->bindParam(":id", $commentID);
+            return ($stmt->execute() ? $stmt->fetch(PDO::FETCH_ASSOC) : array());
+        }
+
         public function createComment($postID, $posterID, $body) {
             $conn = $this->connection();
             $stmt = $conn->prepare("
@@ -122,6 +157,16 @@
             $stmt->bindParam(":body", $body);
             $stmt->bindParam(":postID", $postID);
             $stmt->bindParam(":posterID", $posterID);
+            return $stmt->execute();
+        }
+
+        public function deleteComment($commentID) {
+            $conn = $this->connection();
+            $stmt = $conn->prepare("
+                DELETE FROM Comments
+                WHERE id = :id
+            ");
+            $stmt->bindParam(":id", $commentID);
             return $stmt->execute();
         }
 
