@@ -28,7 +28,7 @@
             <?php
                 echo "<div id='title'section' class='flex-row'><h2 class='expand'>$title</h2>";
                 if($user != null && ($user->isAdmin || $user->id == $post['posterID'])){
-                    echo "<button class='delete-post' data-id='$postID' style='width: 50px; padding: 0;'><img src=trash-can.svg></button>";
+                    echo "<button class='delete-post' data-id='$postID'><img src=trash-can.svg></button>";
                 }
                 echo "</div>";
                 $images = $db->fetchImages($_GET['post_id']);
@@ -62,7 +62,7 @@
                     $commentPoster = htmlspecialchars($comment['username']);
                     $commentBody = htmlspecialchars($comment['body']);
                     $delButton = ($user != null && ($user->isAdmin || $user->id == $comment['posterID']) ? 
-                        "<button class='delete-comment' data-id='$commentID' style='width: 50px; padding: 0;'><img src=trash-can.svg></button>" : "");
+                        "<button class='delete-comment' data-id='$commentID'><img src=trash-can.svg></button>" : "");
                     echo "
                         <div class='comment flex-row'>
                             <div class='expand'>

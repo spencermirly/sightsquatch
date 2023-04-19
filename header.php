@@ -8,7 +8,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/x-icon" href="squatchicon.png">
+        <link rel="icon" type="image/x-icon" href="SquatchLogo.png">
         <title>Sightsquatch</title>
         </head>
         <body>
@@ -19,7 +19,7 @@
             ?>
             <div id="container" class="flex-col">
                 <div id="title-bar" class="flex-row">
-                    <img src="squatchicon.png">
+                    <img src="SquatchLogo.png">
                     <h1 class="expand">Sightsquatch</h1>
                     <?php
                         if($user != null){

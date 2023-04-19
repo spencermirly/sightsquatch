@@ -50,7 +50,7 @@ a {
 }
 
 #title-bar {
-    height: 80px;
+    height: 90px;
     background-color: #3e8948;
 }
 
@@ -177,7 +177,7 @@ a {
     background-size: cover;
 }
 
-#credentials, #create-post{
+#credentials, #create-post, #view-post{
     text-align: center;
     align-items: stretch;
     gap: 10px;
@@ -302,6 +302,24 @@ input {
     background-color: #262b44;
     border-radius: 8px;
     padding-left: 8px;
+}
+
+.delete-comment {
+    width: 50px;
+    padding: 0;
+    background-color: #ead4aa;
+    border: none;
+    outline: none;
+    border-radius: 0px 8px 8px 0px;
+}
+
+.delete-post {
+    width: 50px;
+    padding: 0;
+    background-color: #ead4aa;
+    border: none;
+    outline: none;
+    border-radius: 8px;
 }
 
 #welcome-box {
