@@ -37,7 +37,7 @@
                         echo "<div id='img-section' class='flex-row'>";
                         foreach($images as $img) {
                             $path = $img['imgPath'];
-                            echo "<img src='$path'/>";
+                            echo "<img class='post-img' src='$path'/>";
                         }
                         echo "</div>";
                     }
@@ -78,6 +78,8 @@
             </div>
         </div>
     </div>
+    <link rel="stylesheet" href="viewer.css">
     <script src="jquery-3.6.4.min.js"></script>
+    <script src="viewer.min.js"></script>
     <script src="post.js"></script>
 <?php require('footer.php'); ?>

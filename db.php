@@ -57,19 +57,24 @@
             return CreateUserResult::EmailTaken;
         }
 
-        public function fetchPosts($num, $skip = 0, $orderBy = "postDate") {
+        public function fetchPosts($num, $search = "") {
+            $search = '%'.$search.'%';
             $conn = $this->connection();
             $stmt = $conn->prepare("
                 SELECT p.*, u.username, COUNT(c.id) AS comments FROM Posts p
                 JOIN Users u ON p.posterID = u.id
                 LEFT JOIN Comments c ON c.postID = p.id
                 GROUP BY p.id
-                ORDER BY :orderBy
-                LIMIT :num OFFSET :skip
+                HAVING p.title LIKE :search
+                OR p.body LIKE :search
+                OR p.sightingLoc LIKE :search
+                OR p.sightingDate LIKE :search
+                OR u.username LIKE :search
+                ORDER BY postDate
+                LIMIT :num
             ");
-            $stmt->bindParam(":orderBy", $orderBy);
             $stmt->bindParam(":num", $num, PDO::PARAM_INT);
-            $stmt->bindParam(":skip", $skip, PDO::PARAM_INT);
+            $stmt->bindParam(":search", $search);
             return ($stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array());
         }
 

@@ -19,11 +19,12 @@
             ?>
             <div id="container" class="flex-col">
                 <div id="title-bar" class="flex-row">
-                    <img src="SquatchLogo.png">
+                    <img id="site-logo" src="SquatchLogo.png">
                     <h1 class="expand">Sightsquatch</h1>
                     <?php
                         if($user != null){
-                            echo "<p id='welcome-box' class='flex-col'>Welcome, {$user->username}</p>";
+                            $username = htmlspecialchars($user->username);
+                            echo "<p id='welcome-box' class='flex-col'>Welcome, $username</p>";
                         }
                     ?>
                 </div>
